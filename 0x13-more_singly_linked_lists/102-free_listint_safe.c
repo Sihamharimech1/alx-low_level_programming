@@ -1,6 +1,6 @@
 #include "lists.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 /**
  * free_listint_safe - Frees a listint_t linked list.
  * @head: Double pointer to the beginning of the list.
@@ -10,6 +10,7 @@
 size_t free_listint_safe(listint_t **head)
 {
 	size_t count = 0;
+	size_t i;
 	listint_t *temp, **ptrs = NULL;
 
 	if (!head || !*head)
@@ -23,7 +24,7 @@ size_t free_listint_safe(listint_t **head)
 			free_ptrs(ptrs, count);
 			exit(98);
 		}
-		for (size_t i = 0; i < count; i++)
+		for (i = 0; i < count; i++)
 		{
 			if (*head == ptrs[i])
 			{
@@ -49,9 +50,11 @@ size_t free_listint_safe(listint_t **head)
  */
 void free_ptrs(listint_t **ptrs, size_t count)
 {
+	size_t i;
+
 	if (ptrs)
 	{
-		for (size_t i = 0; i < count; i++)
+		for (i = 0; i < count; i++)
 			ptrs[i] = NULL;
 		free(ptrs);
 	}
