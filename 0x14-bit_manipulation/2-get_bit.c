@@ -1,32 +1,17 @@
 #include "main.h"
 #include <stdio.h>
-
 /**
- * print_binary - prints the binary representation of a number
- * @n: the number to be printed
+ * get_bit - returns the value of a bit at a given index
+ * @n: the number to extract the bit from
+ * @index: the index of the bit to extract (starting from 0)
  *
- * Return: void
+ * Return: the value of the bit at the given index, or -1 if an error occurred
  */
-void print_binary(unsigned long int n)
+int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int mask = 1UL << (sizeof(unsigned long int) * 8 - 1);
-	int found_one = 0;
+	if (index >= sizeof(unsigned long int) * 8)
+		return (-1);
 
-	while (mask > 0)
-	{
-		if ((n & mask) == mask)
-		{
-			found_one = 1;
-			_putchar('1');
-		}
-		else if (found_one)
-		{
-			_putchar('0');
-		}
-
-		mask >>= 1;
-	}
-
-	if (!found_one)
-		_putchar('0');
+	return ((n >> index) & 1);
 }
+
